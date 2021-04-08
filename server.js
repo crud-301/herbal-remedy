@@ -27,11 +27,11 @@ const client = new pg.Client(process.env.DATABASE_URL);
 
 // connect to DB and start the Web Server
 client.connect().then(() => {
-    app.listen(PORT, () => {
-        console.log("Connected to database:", client.connectionParameters.database)
-        console.log('Server up on', PORT);
-    });
-})
+  app.listen(PORT, () => {
+    console.log('Connected to database:', client.connectionParameters.database);
+    console.log('Server up on', PORT);
+  });
+});
 
 // routes
 
