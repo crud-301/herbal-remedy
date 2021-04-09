@@ -1,7 +1,7 @@
 {
   "name": "herbal-remedy",
   "version": "1.0.0",
-  "description": "",
+  "description": "**Authors** 1. Mohammad Za'areer 2. Ghofran Dayyat 3. Qais Waleed Ata 4. ali abu-yahia 5. Sara altaweel 6. mohammad al-khazali",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
