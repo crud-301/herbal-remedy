@@ -34,27 +34,34 @@ client.connect().then(() => {
 });
 
 // routes
-app.get('/home', renderHome)
-app.get('/herps/api', renderAsAPI)
+app.get('/home', renderHome);
+app.get('/herps/api', renderAsAPI);
+app.get('/search',handleSearchReq);
+
+
 // callback functions
 
 function renderAsAPI(req, res) {
-    const querySql = 'SELECT * FROM herbs;'
+  const querySql = 'SELECT * FROM herbs;';
 
-    client.query(querySql).then(result => {
-        
-        res.json(result.rows)
-        
-    }).catch(error => {
-        handleError(error, res)
-    })
+  client.query(querySql).then(result => {
+
+    res.json(result.rows);
+
+  }).catch(error => {
+    handleError(error, res);
+  });
 
 
 }
 
 function renderHome(req, res) {
-    res.render('pages/index')
+  res.render('pages/index');
 
 }
 
+function handleSearchReq(req, res){
+  res.render('pages/searches/search.ejs');
+
+}
 // constructor functions
