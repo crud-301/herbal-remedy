@@ -27,36 +27,37 @@ const client = new pg.Client(process.env.DATABASE_URL);
 
 // connect to DB and start the Web Server
 client.connect().then(() => {
-    app.listen(PORT, () => {
-        console.log("Connected to database:", client.connectionParameters.database)
-        console.log('Server up on', PORT);
-    });
-})
+  app.listen(PORT, () => {
+    console.log('Connected to database:', client.connectionParameters.database);
+    console.log('Server up on', PORT);
+  });
+});
 
 // routes
 app.get('/', renderHome)
 app.get('/herps/api', renderAsAPI)
+app.get('/search',handleSearchReq);
 
 // callback functions
 
 function renderAsAPI(req, res) {
-    const querySql = 'SELECT * FROM herbs;'
+  const querySql = 'SELECT * FROM herbs;';
 
-    client.query(querySql).then(result => {
-        
-        res.json(result.rows)
-        
-    }).catch(error => {
-        handleError(error, res)
-    })
+  client.query(querySql).then(result => {
+
+    res.json(result.rows);
+
+  }).catch(error => {
+    handleError(error, res);
+  });
 
 
 }
 
 function renderHome(req, res) {
-    // res.render('pages/index')
 
     const apiUrl = 'https://herbal-remedy.herokuapp.com/herps/api'
+  res.render('pages/index');
 
     superagent.get(apiUrl).then(results => {
         console.log(results.body[24]);
@@ -64,4 +65,8 @@ function renderHome(req, res) {
     })
 }
 
+function handleSearchReq(req, res){
+  res.render('pages/searches/search.ejs');
+
+}
 // constructor functions
