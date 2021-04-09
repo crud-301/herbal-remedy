@@ -34,8 +34,9 @@ client.connect().then(() => {
 })
 
 // routes
-app.get('/home', renderHome)
+app.get('/', renderHome)
 app.get('/herps/api', renderAsAPI)
+
 // callback functions
 
 function renderAsAPI(req, res) {
@@ -53,8 +54,14 @@ function renderAsAPI(req, res) {
 }
 
 function renderHome(req, res) {
-    res.render('pages/index')
+    // res.render('pages/index')
 
+    const apiUrl = 'https://herbal-remedy.herokuapp.com/herps/api'
+
+    superagent.get(apiUrl).then(results => {
+        console.log(results.body[24]);
+        res.render('pages/index', {result:results.body})
+    })
 }
 
 // constructor functions
