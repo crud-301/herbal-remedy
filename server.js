@@ -34,7 +34,27 @@ client.connect().then(() => {
 })
 
 // routes
-
+app.get('/home', renderHome)
+app.get('/herps/api', renderAsAPI)
 // callback functions
+
+function renderAsAPI(req, res) {
+    const querySql = 'SELECT * FROM herbs;'
+
+    client.query(querySql).then(result => {
+        
+        res.json(result.rows)
+        
+    }).catch(error => {
+        handleError(error, res)
+    })
+
+
+}
+
+function renderHome(req, res) {
+    res.render('pages/index')
+
+}
 
 // constructor functions
