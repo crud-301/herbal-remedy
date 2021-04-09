@@ -34,7 +34,12 @@ client.connect().then(() => {
 })
 
 // routes
-
+app.get('/home', renderHome)
 // callback functions
+
+function renderHome(req, res) {
+    res.render('pages/index')
+
+}
 
 // constructor functions
