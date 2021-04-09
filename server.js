@@ -27,34 +27,41 @@ const client = new pg.Client(process.env.DATABASE_URL);
 
 // connect to DB and start the Web Server
 client.connect().then(() => {
-    app.listen(PORT, () => {
-        console.log("Connected to database:", client.connectionParameters.database)
-        console.log('Server up on', PORT);
-    });
-})
+  app.listen(PORT, () => {
+    console.log('Connected to database:', client.connectionParameters.database);
+    console.log('Server up on', PORT);
+  });
+});
 
 // routes
-app.get('/home', renderHome)
-app.get('/herps/api', renderAsAPI)
+app.get('/home', renderHome);
+app.get('/herps/api', renderAsAPI);
+app.get('/search',handleSearchReq);
+
+
 // callback functions
 
 function renderAsAPI(req, res) {
-    const querySql = 'SELECT * FROM herbs;'
+  const querySql = 'SELECT * FROM herbs;';
 
-    client.query(querySql).then(result => {
-        
-        res.json(result.rows)
-        
-    }).catch(error => {
-        handleError(error, res)
-    })
+  client.query(querySql).then(result => {
+
+    res.json(result.rows);
+
+  }).catch(error => {
+    handleError(error, res);
+  });
 
 
 }
 
 function renderHome(req, res) {
-    res.render('pages/index')
+  res.render('pages/index');
 
 }
 
+function handleSearchReq(req, res){
+  res.render('pages/searches/search.ejs');
+
+}
 // constructor functions
