@@ -36,6 +36,7 @@ client.connect().then(() => {
 // routes
 app.get('/', renderHome)
 app.get('/herps/api', renderAsAPI)
+app.get('/collection',renderUserCollection);
 
 // callback functions
 
@@ -63,5 +64,9 @@ function renderHome(req, res) {
         res.render('pages/index', {result:results.body})
     })
 }
+function renderUserCollection(req,res){
+    res.render('pages/index')
+}
+
 
 // constructor functions
