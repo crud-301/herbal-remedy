@@ -9,6 +9,7 @@ CREATE TABLE herbs (
     description TEXT
 );  
 
+
 DROP TABLE IF EXISTS add_herb;
 
 CREATE TABLE add_herb (
