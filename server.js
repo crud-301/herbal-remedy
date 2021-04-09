@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 'use strict';
 
 // application dependencies
@@ -10,7 +11,7 @@ const methodOverride = require('method-override');
 const app = express();
 
 // environment variables
-const PORT = process.env.PORT || 3030;
+const PORT = process.env.PORT || 3000;
 const DATABASE_URL = process.env.DATABASE_URL;
 
 // middleware
@@ -27,11 +28,11 @@ const client = new pg.Client(process.env.DATABASE_URL);
 
 // connect to DB and start the Web Server
 client.connect().then(() => {
-    app.listen(PORT, () => {
-        console.log("Connected to database:", client.connectionParameters.database)
-        console.log('Server up on', PORT);
-    });
-})
+  app.listen(PORT, () => {
+    console.log('Connected to database:', client.connectionParameters.database);
+    console.log('Server up on', PORT);
+  });
+});
 
 // routes
 
