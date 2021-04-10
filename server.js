@@ -41,7 +41,10 @@ app.get('/search',handleSearchReq);
 app.post('/show', handleShowReq);
 app.post('/collection', addHerbToDB);
 app.get('/collection', renderCollectionPageFromDb);
-app.post('/herb/delete',deletHerb);
+app.get('/collection/:id',getOneHerb);
+app.put('/collection/:id',updateDetails);
+app.delete('/collection/:id',deleteDetails);
+
 
 // callback functions
 
@@ -70,7 +73,7 @@ function renderHome(req, res) {
 
 
 function renderCollectionPageFromDb(req, res) {
-  const sqlQuery = `SELECT DISTINCT name, image_url, case_using, preparation, description FROM add_herb;`;
+  const sqlQuery = `SELECT DISTINCT id, name, image_url, case_using, preparation, description FROM add_herb;`;
 
   client.query(sqlQuery).then(result => {
 
@@ -85,10 +88,32 @@ function addHerbToDB(req,res){
   const {name, image_url, case_using, preparation, description} = req.body;
   const insertQuery = `INSERT INTO add_herb(name, image_url, case_using, preparation, description) VALUES ($1, $2, $3, $4, $5) ;`;
   const safeValues = [name, image_url, case_using, preparation, description];
-
   client.query(insertQuery, safeValues).then(() => {
     res.redirect('/collection');
   });
+}
+
+
+function getOneHerb(req,res){
+  const herbId = req.params.id;
+  const saveHerb = [herbId];
+  const sqlHerb = 'SELECT * FROM add_herb WHERE id=$1';
+  client.query(sqlHerb,saveHerb).then(herbs=>{
+    res.render('pages/herbs/details.ejs',{herb:herbs.rows[0]});
+    console.log(herbs.rows);
+  }).catch(error=>
+    console.log('s.th error'));
+}
+
+function updateDetails(req,res){
+  const idParam = req.params.id;
+  const {name, case_using, preparation, description, image_url}=req.body;
+  const saveValus = [name, case_using, preparation, description, image_url, idParam];
+  const updatSql = `UPDATE add_herb SET name=$1, case_using=$2, preparation=$3, description=$4, image_url=$5 WHERE id=$6;`;
+  client.query(updatSql,saveValus).then(()=>{
+    res.redirect(`/collection/${idParam}`);
+  });
+
 }
 
 function handleSearchReq(req, res) {
@@ -112,6 +137,15 @@ function handleShowReq(req, res) {
   });
 }
 
+function deleteDetails(req,res){
+  const herbID=req.params.id;
+  const deleteQuery='DELETE FROM add_herb WHERE id=$1;';
+  const saveValus=[herbID];
+  client.query(deleteQuery,saveValus).then(()=>{
+    res.redirect('/collection');
+  });
+
+}
 
 // // constructor functions
 function Herp(data) {

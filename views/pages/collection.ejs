@@ -14,17 +14,8 @@
             <img src="<%=herb.image_url%>" alt="">
             <p><%=herb.name%></p>
             <p><%=herb.case_using%></p>
-           
-
+            <a href='/collection/<%=herb.id%>' rel="link" target="_blank">View Herb details</a>
         <%}) %>
-            <!-- <form action="/details" method="POST">
-                <input type="hidden" name="name" value="<%=result.name%>">
-                <input type="hidden" name="case_using" value="<%=result.case_using%>">
-                <input type="hidden" name="preparation" value="<%=result.preparation%>">
-                <input type="hidden" name="description" value="<%=result.description%>">
-                <input type="hidden" name="image_url" value="<%=result.image_url%>">
-                <input type="submit" value="More Details">
-            </form> -->
         </div>
 
     </main>
