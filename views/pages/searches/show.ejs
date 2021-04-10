@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <header></header>
+    <main>
+        <section>
+            <% searchResults.forEach(herb => {%>
+                <%= herb.name %>
+                    <img src='<%= herb.image_url%>'>
+                    <%= herb.case_using%>
+                        <%= herb.preparation%>
+                            <%= herb.description%>
+            <form action="/collection" method="POST">
+                <input type="hidden" name="name"  value="<%=herb.name%>">
+                <input type="hidden" name="image_url"  value="<%=herb.image_url%>">
+                <input type="hidden" name="case_using"  value="<%=herb.case_using%>">
+                <input type="hidden" name="preparation"  value="<%=herb.preparation%>">
+                <input type="hidden" name="description"  value="<%=herb.description%>">
+                <input type="submit" value="add herb" >
+            </form>
+                                <%});%>
+        </section>
+    </main>
+    <footer></footer>
+</body>
+
+</html>

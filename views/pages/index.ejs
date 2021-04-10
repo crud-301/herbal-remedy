@@ -1,23 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <%- include('.././layout/head.ejs') %>
+    <!-- <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="../../styles/base.css">
+    <title>Herbs Remedy</title> -->
+ 
+ 
 </head>
 <body>
-    <h1>hello world</h1>
-    <main>
+    <header>
+        
+  <div id="img-div">
+    <img src="../../img/herbal Remedy (3) (1).png" alt="" width="100px" height="50px" >
+</div>
+<nav>
+    <ul>
+        <li><a href="#">HOME</a></li>
+        <li><a href="#">SEARCH</a></li>
+        <li><a href="#">ABOUT</a></li>
+        <li><a href="#">API</a></li>
+    </ul>
+</nav>
+        <!-- <%- include('.././layout/header.ejs') %> -->
+
+    </header>
+    <main id="index-main">
         <section id="right-index">
-            <div><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Id mollitia minima natus quam sequi fugiat, aut illum impedit minus modi? Adipisci aliquam veniam rem quam? Officiis itaque nam at eveniet.</p></div>
-            <div>img</div>
-            <div><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Neque deleniti commodi quod illo omnis, natus adipisci, quas soluta, doloremque laborum vel saepe quasi earum quis ut consequatur quo ex fuga!</p></div>
-            <div>img</div>
+            <div>
+                <img src="<%= result[24].image_url%>" alt="">
+            </div>
+            <div>
+                <p><%=result[24].name%></p>
+                <p><%=result[24].case_using%></p>
+                <p><%=result[24].preparation%></p>
+                <p><%=result[24].description%></p>
+            </div>
+            <div>
+                <p><%=result[28].name%></p>
+                <p><%=result[28].case_using%></p>
+                <p><%=result[28].preparation%></p>
+                <p><%=result[28].description%></p>
+            </div>
+            <div>
+                <img src="<%= result[28].image_url%>" alt="">
+
+            </div>
         </section>
 
         <section id="left-index">
-            <h3>my collection</h3>
+            <h3><a href="/collection"> my collection</a></h3>
 
         </section>
     </main>
