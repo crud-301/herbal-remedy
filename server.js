@@ -38,9 +38,10 @@ client.connect().then(() => {
 
 app.get('/', renderHome)
 app.get('/herps/api', renderAsAPI)
-app.get('/collection',renderUserCollection);
 app.get('/search',handleSearchReq);
 app.post('/show', handleShowReq);
+app.post('/collection', addHerbToDB);
+app.get('/collection', renderCollectionPageFromDb);
 
 // callback functions
 
@@ -68,8 +69,26 @@ function renderHome(req, res) {
 }
 
 
-function renderUserCollection(req,res){
-    res.render('pages/index')
+function renderCollectionPageFromDb(req, res) {
+    const sqlQuery = `SELECT DISTINCT name, image_url, case_using, preparation, description FROM add_herb;`
+    
+    client.query(sqlQuery).then(result => {
+        
+        res.render('pages/collection', { result: result.rows})
+        
+    }).catch(error => {
+        handleError(error, res)
+    })
+}
+
+function addHerbToDB(req,res){
+    const {name, image_url, case_using, preparation, description} = req.body
+    const insertQuery = `INSERT INTO add_herb(name, image_url, case_using, preparation, description) VALUES ($1, $2, $3, $4, $5) ;`
+    const safeValues = [name, image_url, case_using, preparation, description]
+
+    client.query(insertQuery, safeValues).then(() => {
+            res.redirect('/collection')
+        })
 }
 
 function handleSearchReq(req, res) {
@@ -92,6 +111,7 @@ function handleShowReq(req, res) {
         res.status(500).render('pages/error');
     })
 }
+
 
 // // constructor functions
 function Herp(data) {
