@@ -1,13 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <%- include('.././layout/head.ejs') %>
-</head>
+    <head>
+        <%- include('../../layout/head.ejs') %>
+    </head>
 <body>
-    <header>
-        <%- include('.././layout/header.ejs') %>
-    </header>
-    
 
+    <main>
+        <h1>helllll</h1>
+        <img src='<%= herb.image_url%>'>
+        <%= herb.name%>
+        <%= herb.case_using%>
+        <%= herb.preparation%>
+        <%= herb.description%>
+        <button onclick="showBottom()">Update</button>
+        <div id="show-edit">
+
+            <%- include('edit') %>
+        </div>
+    </main>
+<script src="/js/app.js"></script>
 </body>
 </html>
