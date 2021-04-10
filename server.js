@@ -1,5 +1,6 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-undef */
 'use strict';
-
 // application dependencies
 require('dotenv').config();
 const express = require('express');
@@ -8,23 +9,18 @@ const cors = require('cors');
 const pg = require('pg');
 const methodOverride = require('method-override');
 const app = express();
-
 // environment variables
 const PORT = process.env.PORT || 3030;
 const DATABASE_URL = process.env.DATABASE_URL;
-
 // middleware
 app.use(cors());
 app.use(express.static(__dirname + '/public'));
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
-
 //Set the view engine for server-side templating
 app.set('view engine', 'ejs');
-
 // database setup
 const client = new pg.Client(process.env.DATABASE_URL);
-
 // connect to DB and start the Web Server
 client.connect().then(() => {
   app.listen(PORT, () => {
@@ -32,6 +28,9 @@ client.connect().then(() => {
     console.log('Server up on', PORT);
   });
 });
+
+
+
 
 // routes
 
@@ -44,6 +43,8 @@ app.post('/collection', addHerbToDB);
 app.get('/collection', renderCollectionPageFromDb);
 app.get('/collection/:id',getOneHerb);
 app.put('/collection/:id',updateDetails);
+app.delete('/collection/:id',deleteDetails);
+
 
 // callback functions
 
@@ -136,6 +137,15 @@ function handleShowReq(req, res) {
   });
 }
 
+function deleteDetails(req,res){
+  const herbID=req.params.id;
+  const deleteQuery='DELETE FROM add_herb WHERE id=$1;';
+  const saveValus=[herbID];
+  client.query(deleteQuery,saveValus).then(()=>{
+    res.redirect('/collection');
+  });
+
+}
 
 // // constructor functions
 function Herp(data) {
