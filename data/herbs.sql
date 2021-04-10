@@ -11,6 +11,7 @@ CREATE TABLE herbs (
     description TEXT
 );  
 
+
 CREATE TABLE add_herb (
     id SERIAL PRIMARY KEY,
     name VARCHAR(255),
