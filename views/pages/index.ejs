@@ -30,22 +30,22 @@
     <main id="index-main">
         <section id="right-index">
             <div>
-                <img src="<%= result[24].image_url%>" alt="">
+                <img src="<%= result[0].image_url%>" alt="">
             </div>
             <div>
-                <p><%=result[24].name%></p>
-                <p><%=result[24].case_using%></p>
-                <p><%=result[24].preparation%></p>
-                <p><%=result[24].description%></p>
+                <p><%=result[0].name%></p>
+                <p><%=result[0].case_using%></p>
+                <p><%=result[0].preparation%></p>
+                <p><%=result[0].description%></p>
             </div>
             <div>
-                <p><%=result[28].name%></p>
-                <p><%=result[28].case_using%></p>
-                <p><%=result[28].preparation%></p>
-                <p><%=result[28].description%></p>
+                <p><%=result[result.length-1].name%></p>
+                <p><%=result[result.length-1].case_using%></p>
+                <p><%=result[result.length-1].preparation%></p>
+                <p><%=result[result.length-1].description%></p>
             </div>
             <div>
-                <img src="<%= result[28].image_url%>" alt="">
+                <img src="<%= result[result.length-1].image_url%>" alt="">
 
             </div>
         </section>

@@ -64,18 +64,30 @@ function renderAsAPI(req, res) {
 
 function renderHome(req, res) {
   const apiUrl = 'https://herbal-remedy.herokuapp.com/herps/api';
+  
 
+  const updateQuery= `SELECT * FROM add_herb INNER JOIN(SELECT name FROM add_herb GROUP BY name HAVING COUNT(id) >2
+  ) temp ON add_herb.name= temp.name;`
+  client.query(updateQuery).then((result)=>{
+    // console.log(result.rows[0])
+    // console.log(result.rows[result.rows.length-1])
+    if(result.rows<3){
+      superagent.get(apiUrl).then(results=>{
+        res.render('pages/index',{result:results.body})
+      
+      })}else {
+        res.render('pages/index', {result:result.rows})
+      }
+      }) 
 
-  superagent.get(apiUrl).then(results => {
-    res.render('pages/index', {result:results.body});
-  });
 }
 
 
 function renderCollectionPageFromDb(req, res) {
-  const sqlQuery = `SELECT DISTINCT id, name, image_url, case_using, preparation, description FROM add_herb;`;
+  const sqlQuery = `SELECT DISTINCT image_url, id, name, case_using, preparation, description FROM add_herb;`;
 
   client.query(sqlQuery).then(result => {
+    console.log(result.rows)
 
     res.render('pages/collection', { result: result.rows});
 
