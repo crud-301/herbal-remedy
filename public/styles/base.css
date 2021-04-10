@@ -8,10 +8,12 @@
     padding: 0;
 }
 body {
+    font-family:  'Open Sans', 'Helvetica Neue', sans-serif;
     height: 100vh;
     background-image: url('../img/pexels-cottonbro-4273429\ \(1\).jpg');
     background-size: cover;
     background-repeat: no-repeat;
+    /* background-attachment: fixed; */
 }
 
 header {
@@ -45,16 +47,11 @@ header nav ul li a {
 
 
 #index-main {
-    /* height: 100%;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center; */
-    box-sizing: border-box;
+    /* box-sizing: border-box; */
     display: flex;
     justify-content: center;
     align-items: center;  
-    text-align: center;
+    /* text-align: center; */
     height: 100vh;
 
     /* background-color: burlywood; */
@@ -62,12 +59,48 @@ header nav ul li a {
 }
 
 #right-index {
-    height: 100%;
+    margin-top: 10%;
+    height: 600px;
     width: 50%;
+    text-align: center;
 }
+
+
 #left-index {
-    height: 100%;
+    margin-top: 20%;
+    height: 50%;
     width: 50%;
+
+    text-align: center;
+    background-color: rgba(121, 202, 157, 0.671);
+    height: 100vh;
+    width: 750px;
+    display: grid;
+    grid-template-columns: 1fr 1fr  ;
+    grid-template-rows: 300px 300px  ;
+    
+}
+
+#search-nav {
+    color: rgb(121, 202, 157);
+
+}
+
+#left-index #a {
+    grid-column: 1/2;
+}
+#left-index #b { 
+    
+    grid-column: 2/3;
+
+}
+
+/* #left-index #a
+#left-index #a  */
+
+.img-index {
+    width: 300px;
+    height: 300px;
 }
 
 #show-edit{

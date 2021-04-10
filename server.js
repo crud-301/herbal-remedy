@@ -63,6 +63,7 @@ function renderAsAPI(req, res) {
 }
 
 function renderHome(req, res) {
+
   const apiUrl = 'https://herbal-remedy.herokuapp.com/herps/api';
   
 
@@ -79,6 +80,7 @@ function renderHome(req, res) {
         res.render('pages/index', {result:result.rows})
       }
       }) 
+
 
 }
 
