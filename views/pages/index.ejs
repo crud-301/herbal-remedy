@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <!-- <%- include('.././layout/head.ejs') %> -->
     <meta charset="UTF-8">
@@ -7,53 +8,71 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../styles/base.css">
     <title>Herbs Remedy</title>
- 
- 
+
+
 </head>
+
 <body>
     <header>
-        
-  <div id="img-div">
-    <img src="../../img/herbal Remedy (3) (1).png" alt="" width="100px" height="50px" >
-</div>
-<nav>
-    <ul>
-        <li><a href="#">HOME</a></li>
-        <li><a href="#">SEARCH</a></li>
-        <li><a href="#">ABOUT</a></li>
-        <li><a href="#">API</a></li>
-    </ul>
-</nav>
-        <!-- <%- include('.././layout/header.ejs') %> -->
+
+        <!-- <div id="img-div">
+            <img src="../../img/herbal Remedy (3) (1).png" alt="" width="100px" height="50px">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/">HOME</a></li>
+                <li><a href="/search">SEARCH</a></li>
+                <li><a href="#">ABOUT</a></li>
+                <li><a href="https://herbal-remedy.herokuapp.com/herps/api">API</a></li>
+            </ul>
+        </nav> -->
+        <%- include('.././layout/header.ejs') %>
 
     </header>
     <main id="index-main">
-        <section id="right-index">
-            <div>
-                <img src="<%= result[24].image_url%>" alt="">
+        <section id="left-index">
+            <div id="a">
+                <img class="img-index" src="<%= result[24].image_url%>" alt="">
             </div>
-            <div>
-                <p><%=result[24].name%></p>
-                <p><%=result[24].case_using%></p>
-                <p><%=result[24].preparation%></p>
-                <p><%=result[24].description%></p>
+            <div id="b">
+                <p>
+                    <%=result[24].name%>
+                </p>
+                <p>
+                    <%=result[24].case_using%>
+                </p>
+                <p>
+                    <%=result[24].preparation%>
+                </p>
+                <p>
+                    <%=result[24].description%>
+                </p>
             </div>
-            <div>
-                <p><%=result[28].name%></p>
-                <p><%=result[28].case_using%></p>
-                <p><%=result[28].preparation%></p>
-                <p><%=result[28].description%></p>
+            <div id="c">
+                <p>
+                    <%=result[28].name%>
+                </p>
+                <p>
+                    <%=result[28].case_using%>
+                </p>
+                <p>
+                    <%=result[28].preparation%>
+                </p>
+                <p>
+                    <%=result[28].description%>
+                </p>
             </div>
-            <div>
-                <img src="<%= result[28].image_url%>" alt="">
+            <div id="d">
+                <img class="img-index" src="<%= result[28].image_url%>" alt="">
 
             </div>
         </section>
 
-        <section id="left-index">
+        <section id="right-index">
             <h3><a href="/collection"> my collection</a></h3>
 
         </section>
     </main>
 </body>
+
 </html>

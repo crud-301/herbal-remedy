@@ -62,6 +62,7 @@ function renderAsAPI(req, res) {
 function renderHome(req, res) {
     const apiUrl = 'https://herbal-remedy.herokuapp.com/herps/api'
 
+    
 
     superagent.get(apiUrl).then(results => {
         res.render('pages/index', {result:results.body})
