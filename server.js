@@ -27,40 +27,40 @@ const client = new pg.Client(process.env.DATABASE_URL);
 
 // connect to DB and start the Web Server
 client.connect().then(() => {
-  app.listen(PORT, () => {
-    console.log('Connected to database:', client.connectionParameters.database);
-    console.log('Server up on', PORT);
-  });
+    app.listen(PORT, () => {
+        console.log('Connected to database:', client.connectionParameters.database);
+        console.log('Server up on', PORT);
+    });
 });
 
 // routes
+
+
 app.get('/', renderHome)
 app.get('/herps/api', renderAsAPI)
-
 app.get('/collection',renderUserCollection);
-
 app.get('/search',handleSearchReq);
-
+app.post('/show', handleShowReq);
 
 // callback functions
 
 function renderAsAPI(req, res) {
-  const querySql = 'SELECT * FROM herbs;';
+    const querySql = 'SELECT * FROM herbs;';
 
-  client.query(querySql).then(result => {
+    client.query(querySql).then(result => {
 
-    res.json(result.rows);
+        res.json(result.rows);
 
-  }).catch(error => {
-    handleError(error, res);
-  });
+    }).catch(error => {
+        handleError(error, res);
+    });
 
 
 }
 
 function renderHome(req, res) {
-
     const apiUrl = 'https://herbal-remedy.herokuapp.com/herps/api'
+
 
     superagent.get(apiUrl).then(results => {
         res.render('pages/index', {result:results.body})
@@ -72,11 +72,32 @@ function renderUserCollection(req,res){
     res.render('pages/index')
 }
 
-
-
-
-function handleSearchReq(req, res){
-  res.render('pages/searches/search.ejs');
-
+function handleSearchReq(req, res) {
+    res.render('pages/searches/search.ejs');
 }
-// constructor functions
+
+function handleShowReq(req, res) {
+    const diseaseName = req.body.disease;
+    const url = 'https://herbal-remedy.herokuapp.com/herps/api';
+
+    superagent.get(url).then(resData => {
+        return resData.body.filter(herb => {
+            if (herb.case_using.includes(diseaseName)) {
+                return new Herp(herb);
+            }
+        });
+    }).then(results => {
+        res.render('pages/searches/show', { searchResults: results });
+    }).catch(error => {
+        res.status(500).render('pages/error');
+    })
+}
+
+// // constructor functions
+function Herp(data) {
+    this.name = data.name;
+    this.image_url = data.image_url;
+    this.case_using = data.case_using;
+    this.preparation = data.preparation;
+    this.description = data.description;
+}
