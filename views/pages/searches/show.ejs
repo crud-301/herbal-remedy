@@ -2,33 +2,46 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <%- include('../../layout/head') %>
 </head>
 
-<body>
+<body id="body-show">
     <header></header>
-    <main>
-        <section>
+    <main id="main-show">
+        <section id="div-allSearches">
             <% searchResults.forEach(herb => {%>
-                <%= herb.name %>
-                    <img src='<%= herb.image_url%>'>
-                    <%= herb.case_using%>
+                <div class="div-show">
+                    <img class="img-show" src='<%= herb.image_url%>'>
+                    <p>
+                        <%= herb.name %>
+                    </p>
+                    <p>
+                        <%= herb.case_using%>
+                    </p>
+                    <p>
                         <%= herb.preparation%>
-                            <%= herb.description%>
-            <form action="/collection" method="POST">
-                <input type="hidden" name="name"  value="<%=herb.name%>">
-                <input type="hidden" name="image_url"  value="<%=herb.image_url%>">
-                <input type="hidden" name="case_using"  value="<%=herb.case_using%>">
-                <input type="hidden" name="preparation"  value="<%=herb.preparation%>">
-                <input type="hidden" name="description"  value="<%=herb.description%>">
-                <input type="submit" value="add herb" >
-            </form>
+                    </p>
+                    <p>
+                        <%= herb.description%>
+                    </p>
+                    <form action="/collection" method="POST">
+                        <input type="hidden" name="name" value="<%=herb.name%>">
+                        <input type="hidden" name="image_url" value="<%=herb.image_url%>">
+                        <input type="hidden" name="case_using" value="<%=herb.case_using%>">
+                        <input type="hidden" name="preparation" value="<%=herb.preparation%>">
+                        <input type="hidden" name="description" value="<%=herb.description%>">
+                        <p>
+
+                            <input type="submit" value="add herb">
+                        </p>
+                    </form>
+                </div>
                                 <%});%>
         </section>
     </main>
-    <footer></footer>
+    <footer>
+        <%- include('../../layout/footer.ejs') %>
+    </footer>
 </body>
 
 </html>

@@ -1,27 +1,25 @@
 @import "reset.css";
 @import "layout.css";
 @import "modules.css";
-
 * {
     box-sizing: border-box;
-    margin: 0;
-    padding: 0;
 }
-body {
-    height: 100vh;
-    background-image: url('../img/pexels-cottonbro-4273429\ \(1\).jpg');
+
+html {
+    font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-image: url('../img/bg.jpg');
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
     background-size: cover;
-    background-repeat: no-repeat;
 }
 
 header {
     display: flex;
     justify-content: space-between;
-    
-    
 }
 
-header #img-div {
+#img-div {
     padding: 20px;
 }
 
@@ -40,37 +38,314 @@ header nav ul li {
 header nav ul li a {
     text-decoration: none;
     color: black;
-
 }
 
+.img-index {
+    width: 250px;
+    height: 250px;
+}
 
 #index-main {
-    /* height: 100%;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center; */
-    box-sizing: border-box;
+    padding: 30px;
+}
+
+a {
+    color: inherit;
+}
+
+#a,
+#b {
+    padding-top: 20px;
+}
+
+#b,
+#c {
+    line-height: 30px;
+}
+
+#c,
+#d {
+    padding-top: 30px;
+    padding-left: 30px;
+}
+
+#right-index a {
+    text-decoration: none;
+    font-size: 20px;
+    background-color: rgba(15, 224, 109, 0.671);
+    color: whitesmoke;
+    padding: 4px;
+    border-radius: 4px;
+}
+
+#right-index a:hover {
+    background-color: rgba(121, 202, 157, 0.671);
+}
+
+#index-main {
+    /* box-sizing: border-box; */
     display: flex;
     justify-content: center;
-    align-items: center;  
-    text-align: center;
+    align-items: center;
+    /* text-align: center; */
     height: 100vh;
-
     /* background-color: burlywood; */
-
 }
 
 #right-index {
-    height: 100%;
+    height: 600px;
+    margin-top: 15%;
+    margin-right: 2%;
     width: 50%;
+    text-align: center;
 }
+
 #left-index {
-    height: 100%;
+    border-radius: 6px;
+    margin-top: 23%;
+    margin-left: 50px;
+    margin-bottom: 300px;
     width: 50%;
+    text-align: center;
+    background-color: rgba(121, 202, 157, 0.671);
+    width: 750px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 300px 300px;
+    box-shadow: 0px 6px 16px rgb(165, 162, 162);
 }
 
+img {
+    border-radius: 8px;
+}
+
+
+/* ----------- collection page -------------------------*/
+
+#body-collection {
+    
+    text-align: center;
+}
+
+#main-collection {
+    margin-top: 3%;
+    margin-bottom: 80px;
+    
+}
+
+#div-allCollections {
+    margin-top: 6%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:  center;
+    
+}
+
+.div-collection {
+    background-color: rgba(121, 202, 157, 0.671);
+    padding: 30px;
+    margin: 20px;
+    width: 40%;
+    margin-top: 25px;
+    box-shadow: 0px 6px 16px rgb(165, 162, 162);
+    border-radius: 4px;
+    
+}
+
+.img-collection {
+    width: 500px;
+    height: 500px;
+}
+
+.div-collection p {
+    margin-top: 20px;
+}
+
+.div-collection p a  {
+    text-decoration: none;
+    font-size: 20px;
+    background-color: rgba(15, 224, 109, 0.671);
+    color: whitesmoke;
+    padding: 4px;
+    border-radius: 4px;
+}
+
+#right-index a:hover {
+    background-color: rgba(121, 202, 157, 0.671);
+}
+
+#div-total {
+    
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:  center;
+}
+
+#total-collection {
+    border-radius: 4px;
+    padding: 13px;
+    background-color: rgba(121, 202, 157, 0.671);
+    width: 180px;
+    font-size: larger;
+    color: whitesmoke;
+    
+}
+
+
+/* ------------------- Search page --------------------*/
+
+
+#main-search {
+    margin-top: 10%;
+    text-align: center;
+    height: 100vh;
+    
+}
+
+#main-search form {
+    margin: 0 auto;
+    font-family: Georgia, "Times New Roman", Times, serif;
+    font-size: 16px;
+    color: rgb(83, 109, 100);
+    width: 450px;
+    height: 300px;
+    font-size: 20px;
+    padding: 25px 25px 12px 25px; 
+    background-color: rgba(91, 165, 124, 0.363);
+    box-shadow: 0px 6px 16px rgb(165, 162, 162);
+}
+
+.search-input {
+    font-size: medium;
+    margin-top: 30px;
+    padding: 25px;
+    transform: all .5s;
+    
+}
+
+.search-input:hover {
+    transform: all .5s;
+    width: 400px;
+}
+
+
+#main-search form button {
+    font-size: large;
+    width: 150px;
+    height: 50px;
+    margin-top: 40px;
+    padding: 10px;
+    border-radius: 4px;
+    
+}
+
+#main-search form button:hover{
+    background-color: rgba(33, 58, 44, 0.363);
+    /* background-color: ; */
+}
+
+/*------------ show Page -----------------*/
+
+#body-show {
+    
+    text-align: center;
+}
+
+#main-show {
+    margin-top: 3%;
+    margin-bottom: 80px;
+    
+}
+
+#div-allSearches {
+    margin-top: 6%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:  center;
+    
+}
+
+.div-show {
+    background-color: rgba(121, 202, 157, 0.671);
+    padding: 30px;
+    margin: 20px;
+    width: 40%;
+    margin-top: 25px;
+    box-shadow: 0px 6px 16px rgb(165, 162, 162);
+    border-radius: 4px;
+    
+}
+
+.img-show {
+    width: 500px;
+    height: 500px;
+}
+
+.div-show p {
+    margin-top: 20px;
+}
+
+.div-show form input  {
+    text-decoration: none;
+    font-size: 20px;
+    background-color: rgba(15, 224, 109, 0.671);
+    color: whitesmoke;
+    padding: 4px;
+    border-radius: 4px;
+}
+
+#right-index a:hover {
+    background-color: rgba(121, 202, 157, 0.671);
+}
+
+/* #div-total {
+    
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:  center;
+}
+
+#total-collection {
+    border-radius: 4px;
+    padding: 13px;
+    background-color: rgba(121, 202, 157, 0.671);
+    width: 180px;
+    font-size: larger;
+    color: whitesmoke;
+    
+} */
+
+
+/*----------detail page------------*/
 #show-edit{
-    display: none;
+display: none;
+
 }
 
+.main-detail{
+    background-color: rgba(121, 202, 157, 0.671);
+    background-color: rgba(121, 202, 157, 0.671);
+    padding: 30px;
+    margin: 0 auto;
+    width: 42%;
+    margin-top: 25px;
+    box-shadow: 0px 6px 16px rgb(165, 162, 162);
+    border-radius: 4px;
+}
+#detail-body{
+    text-align: center;
+}
+.main-detail p {
+    margin-top: 20px;
+}
+
+.updat-butt button ,input{
+    background-color: rgba(15, 224, 109, 0.671);
+    float: right;
+    margin: 1%;
+    padding: 1%;
+    width: 30%;
+    margin-bottom: 3%;
+    margin-right: 2%;
+    bottom: 5
+}

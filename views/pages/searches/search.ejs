@@ -1,12 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
+<head>
+    <%- include('../../layout/head') %>
+</head>
+
 <body>
-    <main>
-        <h2>Search By Disease Name</h2>
+    <header>
+        <%- include('../../layout/header.ejs') %>
+    </header>
+    <main id="main-search">
         <form method="POST" action="/show">
-            <input type="text" name="disease"  placeholder="enter disease name" required>
-            <button type="submit" >Search</button>
+            <h2>Search By Disease Name</h2>
+            <input class="search-input" type="text" name="disease" placeholder="Enter Disease Name" required><br>
+            <button type="submit">Search</button>
         </form>
     </main>
+    <footer>
+        <%- include('../../layout/footer.ejs') %>
+    </footer>
 </body>
+
 </html>
