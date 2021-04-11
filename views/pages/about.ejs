@@ -5,13 +5,49 @@
     <%- include('../layout/head') %>
 </head>
 
-<body>
+<body id="about-body">
     <header>
         <%- include('.././layout/header.ejs') %>
     </header>
-    <main>
-        <h2>A group of students at LTUC College on the Programming Development Scholarship, offered by the Qudra 2 program</h2>
+    <main id='about-main'>
+        <div>
+            <img src="img/Sara.jpg">
+            <h3>Sara Altaweel</h3>
+            <a href="https://github.com/Saraaltaweel" target="_blank"><i class="fab fa-2x fa-github-alt"></i></a>
+        </div>
+        <div>
+            <img src="img/Ghofran.jpg">
+            <h3>Ghofran Dayyat</h3>
+            <a href="https://github.com/GhofranDayyat" target="_blank"><i class="fab fa-2x fa-github-alt"></i></a>
+        </div>
+        <div>
+            <img src="img/Khazalah.jpg">
+            <h3>Mohammad Khaz'ali</h3>
+            <a href="https://github.com/abu-al3ees" target="_blank"><i class="fab fa-2x fa-github-alt"></i></a>
+        </div>
+        <div>
+            <img src="img/qais.jpg">
+            <h3>Qais Waleed Ata</h3>
+            <a href="https://github.com/qaisw96" target="_blank"><i class="fab fa-2x fa-github-alt"></i></a>
+        </div>
+        <div>
+            <img src="img/zaareer.jpg">
+            <h3>Mohammad Za'areer</h3>
+            <a href="https://github.com/MOH-ZR" target="_blank"><i class="fab fa-2x fa-github-alt"></i></a>
+
+        </div>
     </main>
+    <section id="sec-about">
+        <h2>A group of students at LTUC College on the Programming Development Scholarship, offered by the Qudra 2 program</h2>
+        <h2>Contact Us</h2>
+        <form>
+            <input type="text" placeholder="First name" required>
+            <input type="text" placeholder="Last name" required>
+            <input type="email" placeholder="E-mail" required>
+            <input type="text" placeholder="message">
+            <button>send</button>
+        </form>
+    </section>
     <footer>
         <%- include('.././layout/footer.ejs') %>
     </footer>
