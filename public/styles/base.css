@@ -270,7 +270,11 @@ img {
     cursor: pointer;
 }
 
-#main-search form button:hover {
+
+#main-search form button:hover{
+
+    background-color: rgba(33, 58, 44, 0.363);
+    /* background-color: ; */
     background-color: #ddd;
     width: 175px;
     color: black;
@@ -349,25 +353,42 @@ img {
 } */
 
 
-/*-------- footer ------------------*/
 
-footer {
-    background-image: linear-gradient(120deg, #368a71c0 0%, #3f6e45 100%);
-    position: sticky;
-    /* bottom:0; */
-    width: 100%;
-    height: 150px;
+ 
+/*----------detail page------------*/
+#show-edit{
+display: none;
+
+}
+
+.main-detail{
+    background-color: rgba(121, 202, 157, 0.671);
+    background-color: rgba(121, 202, 157, 0.671);
+    padding: 30px;
+    margin: 0 auto;
+    width: 42%;
+    margin-top: 25px;
+    box-shadow: 0px 6px 16px rgb(165, 162, 162);
+    border-radius: 4px;
+}
+#detail-body{
     text-align: center;
 }
-
-footer a {
+.main-detail p {
     margin-top: 20px;
-    margin: 20px;
 }
 
-footer p {
-    margin-top: 50px;
+.updat-butt button ,input{
+    background-color: rgba(15, 224, 109, 0.671);
+    float: right;
+    margin: 1%;
+    padding: 1%;
+    width: 30%;
+    margin-bottom: 3%;
+    margin-right: 2%;
+    bottom: 5
 }
+
 
 #icon-footer {
     padding-top: 30px;
@@ -449,6 +470,28 @@ footer p {
     border: none;
     box-shadow: 0 0 10px #ddd, 0 0 10px #ddd, 0 0 40px #ddd;
 }
+/*-------- footer ------------------*/
 
+footer {
+    background-image: linear-gradient(120deg, #368a71c0 0%, #3f6e45 100%);
+    position: sticky;
+    /* bottom:0; */
+    width: 100%;
+    height: 150px;
+    text-align: center;
+}
 
-/************about**************/
+footer a {
+    margin-top: 20px;
+    margin: 20px;
+}
+
+footer p {
+    margin-top: 50px;
+}
+=======
+
+/************about**************
+ #icon-footer {
+     padding-top: 30px;
+ }
