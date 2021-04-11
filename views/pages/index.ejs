@@ -10,7 +10,6 @@
         <%- include('.././layout/header.ejs') %>
     </header>
     <main id="index-main">
-
         <section id="left-index">
             <div id="a">
                 <img class="img-index" src="<%= result[0].image_url%>" alt="">
@@ -23,9 +22,6 @@
                     <%=result[0].case_using%>
                 </p>
                 <p>
-                    <%=result[0].preparation%>
-                </p>
-                <p>
                     <%=result[0].description%>
                 </p>
             </div>
@@ -36,9 +32,7 @@
                 <p>
                     <%=result[result.length-1].case_using%>
                 </p>
-                <p>
-                    <%=result[result.length-1].preparation%>
-                </p>
+
                 <p>
                     <%=result[result.length-1].description%>
                 </p>
@@ -46,10 +40,11 @@
             <div id="d">
                 <img class="img-index" src="<%= result[result.length-1].image_url%>" alt="">
             </div>
+
         </section>
 
         <section id="right-index">
-            <h3><a href="/collection"> my collection</a></h3>
+            <h3><a href="/collection"> My Collection</a></h3>
         </section>
     </main>
     <footer>
