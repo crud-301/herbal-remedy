@@ -1,16 +1,16 @@
 @import "reset.css";
 @import "layout.css";
 @import "modules.css";
-
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
+
 body {
-    font-family:  'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
     height: 100vh;
-    background-image: url('../img/pexels-cottonbro-4273429\ \(1\).jpg');
+    background-image: url('../img/bg.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     /* background-attachment: fixed; */
@@ -19,8 +19,6 @@ body {
 header {
     display: flex;
     justify-content: space-between;
-    
-    
 }
 
 header #img-div {
@@ -42,20 +40,16 @@ header nav ul li {
 header nav ul li a {
     text-decoration: none;
     color: black;
-
 }
-
 
 #index-main {
     /* box-sizing: border-box; */
     display: flex;
     justify-content: center;
-    align-items: center;  
+    align-items: center;
     /* text-align: center; */
     height: 100vh;
-
     /* background-color: burlywood; */
-
 }
 
 #right-index {
@@ -65,35 +59,31 @@ header nav ul li a {
     text-align: center;
 }
 
-
 #left-index {
     margin-top: 20%;
     height: 50%;
     width: 50%;
-
     text-align: center;
     background-color: rgba(121, 202, 157, 0.671);
     height: 100vh;
     width: 750px;
     display: grid;
-    grid-template-columns: 1fr 1fr  ;
-    grid-template-rows: 300px 300px  ;
-    
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 300px 300px;
 }
 
 #search-nav {
     color: rgb(121, 202, 157);
-
 }
 
 #left-index #a {
     grid-column: 1/2;
 }
-#left-index #b { 
-    
-    grid-column: 2/3;
 
+#left-index #b {
+    grid-column: 2/3;
 }
+
 
 /* #left-index #a
 #left-index #a  */
@@ -103,6 +93,51 @@ header nav ul li a {
     height: 300px;
 }
 
-#show-edit{
+#show-edit {
     display: none;
 }
+
+
+/********Footer*******/
+
+.fa {
+    padding: 20px;
+    font-size: 30px;
+    width: 30px;
+    text-align: center;
+    text-decoration: none;
+    margin: 5px 2px;
+    border-radius: 50%;
+}
+
+.fa:hover {
+    opacity: 0.7;
+}
+
+.fa-github {
+    background: #131212;
+    color: white;
+}
+
+.fa-linkedin {
+    background: #131212;
+    color: white;
+}
+
+.fa-instagram {
+    background: #131212;
+    color: white;
+}
+
+.fa-youtube {
+    background: #131212;
+    color: white;
+}
+
+.fa-twitter {
+    background: #131212;
+    color: white;
+}
+
+
+/********Footer*******/

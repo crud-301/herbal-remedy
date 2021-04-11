@@ -1,24 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <%- include('.././layout/head.ejs') %>
 </head>
+
 <body>
     <header>
         <%- include('.././layout/header.ejs') %>
     </header>
     <main>
-        <h3><%= result.length%></h3>
+        <h3>
+            <%= result.length%>
+        </h3>
         <div>
             <% result.forEach(herb => { %>
-            <img src="<%=herb.image_url%>" alt="">
-            <p><%=herb.name%></p>
-            <p><%=herb.case_using%></p>
-            <a href='/collection/<%=herb.id%>' rel="link" target="_blank">View Herb details</a>
-        <%}) %>
+                <img src="<%=herb.image_url%>" alt="">
+                <p>
+                    <%=herb.name%>
+                </p>
+                <p>
+                    <%=herb.case_using%>
+                </p>
+                <a href='/collection/<%=herb.id%>' rel="link" target="_blank">View Herb details</a>
+                <%}) %>
         </div>
 
     </main>
-    
+    <footer>
+        <%- include('.././layout/footer.ejs') %>
+    </footer>
 </body>
+
 </html>

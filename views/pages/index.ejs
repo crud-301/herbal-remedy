@@ -3,28 +3,11 @@
 
 <head>
     <%- include('.././layout/head.ejs') %>
-    <!-- <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../styles/base.css">
-    <title>Herbs Remedy</title>
 </head>
 
+<body>
     <header>
-
-        <!-- <div id="img-div">
-            <img src="../../img/herbal Remedy (3) (1).png" alt="" width="100px" height="50px">
-        </div>
-        <nav>
-            <ul>
-                <li><a href="/">HOME</a></li>
-                <li><a href="/search">SEARCH</a></li>
-                <li><a href="#">ABOUT</a></li>
-                <li><a href="https://herbal-remedy.herokuapp.com/herps/api">API</a></li>
-            </ul>
-        </nav> -->
         <%- include('.././layout/header.ejs') %>
-
     </header>
     <main id="index-main">
 
@@ -62,16 +45,16 @@
             </div>
             <div id="d">
                 <img class="img-index" src="<%= result[result.length-1].image_url%>" alt="">
-
-
             </div>
         </section>
 
         <section id="right-index">
             <h3><a href="/collection"> my collection</a></h3>
-
         </section>
     </main>
+    <footer>
+        <%- include('.././layout/footer.ejs') %>
+    </footer>
 </body>
 
 </html>
