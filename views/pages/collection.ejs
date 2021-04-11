@@ -5,25 +5,34 @@
     <%- include('../layout/head.ejs') %>
 </head>
 
-<body>
+<body id="body-collection">
     <header>
         <%- include('.././layout/header.ejs') %>
     </header>
-    <main>
-        <h3>
-            <%= result.length%>
-        </h3>
-        <div>
+    <main id="main-collection">
+        <div id="div-total">
+            <h3 id="total-collection">
+                Total Herb : <%= result.length%>
+            </h3>
+
+        </div>
+        <div id="div-allCollections">
+
             <% result.forEach(herb => { %>
-                <img src="<%=herb.image_url%>" alt="">
-                <p>
-                    <%=herb.name%>
-                </p>
-                <p>
-                    <%=herb.case_using%>
-                </p>
-                <a href='/collection/<%=herb.id%>' rel="link" target="_blank">View Herb details</a>
-                <%}) %>
+                <div class="div-collection">
+                    <img class="img-collection" src="<%=herb.image_url%>" alt="">
+                    <p>
+                        <%=herb.name%>
+                    </p>
+                    <p>
+                        <%=herb.case_using%>
+                    </p>
+                    <p>
+
+                        <a href='/collection/<%=herb.id%>' rel="link" target="_blank">More details</a>
+                    </p>
+                </div>
+                    <%}) %>
         </div>
 
     </main>
