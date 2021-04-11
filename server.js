@@ -36,6 +36,7 @@ client.connect().then(() => {
 
 // routes
 app.get('/', renderHome);
+app.get('/about', handleAbout)
 app.get('/herps/api', renderAsAPI);
 app.get('/search', handleSearchReq);
 app.post('/show', handleShowReq);
@@ -145,6 +146,9 @@ function deleteDetails(req, res) {
 
 }
 
+function handleAbout(req, res) {
+    res.render('pages/about');
+}
 // constructor functions
 function Herp(data) {
     this.name = data.name;

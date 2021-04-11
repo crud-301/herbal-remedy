@@ -3,17 +3,15 @@
 @import "modules.css";
 * {
     box-sizing: border-box;
-    margin: 0;
-    padding: 0;
 }
 
-body {
+html {
     font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
-    height: 100vh;
     background-image: url('../img/bg.jpg');
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
     background-size: cover;
-    background-repeat: no-repeat;
-    /* background-attachment: fixed; */
 }
 
 header {
@@ -21,7 +19,7 @@ header {
     justify-content: space-between;
 }
 
-header #img-div {
+#img-div {
     padding: 20px;
 }
 
@@ -42,6 +40,48 @@ header nav ul li a {
     color: black;
 }
 
+.img-index {
+    width: 250px;
+    height: 250px;
+}
+
+#index-main {
+    padding: 30px;
+}
+
+a {
+    color: inherit;
+}
+
+#a,
+#b {
+    padding-top: 20px;
+}
+
+#b,
+#c {
+    line-height: 30px;
+}
+
+#c,
+#d {
+    padding-top: 30px;
+    padding-left: 30px;
+}
+
+#right-index a {
+    text-decoration: none;
+    font-size: 20px;
+    background-color: rgba(15, 224, 109, 0.671);
+    color: whitesmoke;
+    padding: 4px;
+    border-radius: 4px;
+}
+
+#right-index a:hover {
+    background-color: rgba(121, 202, 157, 0.671);
+}
+
 #index-main {
     /* box-sizing: border-box; */
     display: flex;
@@ -53,91 +93,28 @@ header nav ul li a {
 }
 
 #right-index {
-    margin-top: 10%;
     height: 600px;
+    margin-top: 15%;
+    margin-right: 2%;
     width: 50%;
     text-align: center;
 }
 
 #left-index {
-    margin-top: 20%;
-    height: 50%;
+    border-radius: 6px;
+    margin-top: 23%;
+    margin-left: 50px;
+    margin-bottom: 300px;
     width: 50%;
     text-align: center;
     background-color: rgba(121, 202, 157, 0.671);
-    height: 100vh;
     width: 750px;
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 300px 300px;
+    box-shadow: 0px 6px 16px rgb(165, 162, 162);
 }
 
-#search-nav {
-    color: rgb(121, 202, 157);
+img {
+    border-radius: 8px;
 }
-
-#left-index #a {
-    grid-column: 1/2;
-}
-
-#left-index #b {
-    grid-column: 2/3;
-}
-
-
-/* #left-index #a
-#left-index #a  */
-
-.img-index {
-    width: 300px;
-    height: 300px;
-}
-
-#show-edit {
-    display: none;
-}
-
-
-/********Footer*******/
-
-.fa {
-    padding: 20px;
-    font-size: 30px;
-    width: 30px;
-    text-align: center;
-    text-decoration: none;
-    margin: 5px 2px;
-    border-radius: 50%;
-}
-
-.fa:hover {
-    opacity: 0.7;
-}
-
-.fa-github {
-    background: #131212;
-    color: white;
-}
-
-.fa-linkedin {
-    background: #131212;
-    color: white;
-}
-
-.fa-instagram {
-    background: #131212;
-    color: white;
-}
-
-.fa-youtube {
-    background: #131212;
-    color: white;
-}
-
-.fa-twitter {
-    background: #131212;
-    color: white;
-}
-
-
-/********Footer*******/
