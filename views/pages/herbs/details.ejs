@@ -10,6 +10,9 @@
 <header>
     <%- include('../../layout/header.ejs') %>
 </header>
+<div class="grass">
+    
+</div>
     <main class="main-detail">
         <img class="img-collection" src='<%= herb.image_url%>'>
        <p><%= herb.name%></p> 
@@ -17,9 +20,9 @@
         <p><%= herb.preparation%></p> 
         <p> <%= herb.description%></p>
         <div class="updat-butt">
-        <button onclick="showBottom()">Update</button>
+        <button id="update-butt" onclick="showBottom()">Update</button>
         <form action="/collection/<%=herb.id%>?_method=DELETE" method="POST">
-        <input type="submit" value="delete">
+        <input id="delete-butt" type="submit" value="Delete">
         </form>
         <div id="show-edit">
 
@@ -27,6 +30,9 @@
         </div>
         </div>
     </main>
+    <div class="grass">
+    
+    </div>
     <footer>
         <%- include('../../layout/footer.ejs') %>
     </footer>
