@@ -29,16 +29,16 @@ const client = new pg.Client(process.env.DATABASE_URL);
 
 // connect to DB and start the Web Server
 client.connect().then(() => {
-    app.listen(PORT, () => {
-        console.log('Connected to database:', client.connectionParameters.database);
-        console.log('Server up on', PORT);
-    });
+  app.listen(PORT, () => {
+    console.log('Connected to database:', client.connectionParameters.database);
+    console.log('Server up on', PORT);
+  });
 });
 
 
 // routes
 app.get('/', renderHome);
-app.get('/about', handleAbout)
+app.get('/about', handleAbout);
 app.get('/herps/api', renderAsAPI);
 app.get('/search', handleSearchReq);
 app.post('/show', handleShowReq);
@@ -48,174 +48,168 @@ app.get('/collection/:id', getOneHerb);
 app.put('/collection/:id', updateDetails);
 app.delete('/collection/:id', deleteDetails);
 
-app.get('/dashboard/:id', updateSuggestionTable)
-app.get('/suggestion/delete/:id', deleteFromSuggestionTable)
+app.get('/dashboard/:id', updateSuggestionTable);
+app.get('/suggestion/delete/:id', deleteFromSuggestionTable);
 
-app.get('/dashboard', getUserSuggestions)
+app.get('/dashboard', getUserSuggestions);
 
 
 // callback functions
 function renderAsAPI(req, res) {
-    const querySql = 'SELECT * FROM herbs;';
+  const querySql = 'SELECT * FROM herbs;';
 
-    client.query(querySql).then(result => {
-        res.json(result.rows);
-    }).catch(error => {
-        handleError(error, res);
-    });
+  client.query(querySql).then(result => {
+    res.json(result.rows);
+  }).catch(error => {
+    handleError(error, res);
+  });
 }
 
 function renderHome(req, res) {
-    const apiUrl = 'https://herbal-remedy.herokuapp.com/herps/api';
+  const apiUrl = 'https://herbal-remedy.herokuapp.com/herps/api';
 
-    const updateQuery = `SELECT * FROM add_herb INNER JOIN(SELECT name FROM add_herb GROUP BY name HAVING COUNT(id) >2
-  ) temp ON add_herb.name= temp.name;`
-    client.query(updateQuery).then((result) => {
-        if (result.rows < 3) {
-            superagent.get(apiUrl).then(results => {
-                res.render('pages/index', { result: results.body });
-            })
-        } else {
-            res.render('pages/index', { result: result.rows })
-        }
-    });
+  const updateQuery = `SELECT * FROM add_herb INNER JOIN(SELECT name FROM add_herb GROUP BY name HAVING COUNT(id) >2
+  ) temp ON add_herb.name= temp.name;`;
+  client.query(updateQuery).then((result) => {
+    if (result.rows < 3) {
+      superagent.get(apiUrl).then(results => {
+        res.render('pages/index', { result: results.body });
+      });
+    } else {
+      res.render('pages/index', { result: result.rows });
+    }
+  });
 }
 
 
 
 
 function renderCollectionPageFromDb(req, res) {
-    const sqlQuery = `SELECT DISTINCT image_url, id, name, case_using, preparation, description FROM add_herb;`;
+  const sqlQuery = `SELECT DISTINCT image_url, id, name, case_using, preparation, description FROM add_herb;`;
 
-    client.query(sqlQuery).then(result => {
-        res.render('pages/collection', { result: result.rows });
-    }).catch(error => {
-        handleError(error, res);
-    });
+  client.query(sqlQuery).then(result => {
+    res.render('pages/collection', { result: result.rows });
+  }).catch(error => {
+    handleError(error, res);
+  });
 }
 
 function addHerbToDB(req, res) {
-    const { name, image_url, case_using, preparation, description } = req.body;
-    const insertQuery = `INSERT INTO add_herb(name, image_url, case_using, preparation, description) VALUES ($1, $2, $3, $4, $5) ;`;
-    const safeValues = [name, image_url, case_using, preparation, description];
-    client.query(insertQuery, safeValues).then(() => {
-        res.redirect('/collection');
-    });
+  const { name, image_url, case_using, preparation, description } = req.body;
+  const insertQuery = `INSERT INTO add_herb(name, image_url, case_using, preparation, description) VALUES ($1, $2, $3, $4, $5) ;`;
+  const safeValues = [name, image_url, case_using, preparation, description];
+  client.query(insertQuery, safeValues).then(() => {
+    res.redirect('/collection');
+  });
 }
 
 
 function getOneHerb(req, res) {
-    const herbId = req.params.id;
-    const saveHerb = [herbId];
-    const sqlHerb = 'SELECT * FROM add_herb WHERE id=$1';
-    client.query(sqlHerb, saveHerb).then(herbs => {
-        res.render('pages/herbs/details.ejs', { herb: herbs.rows[0] });
-    }).catch(error =>
-        handleError(error, res));
+  const herbId = req.params.id;
+  const saveHerb = [herbId];
+  const sqlHerb = 'SELECT * FROM add_herb WHERE id=$1';
+  client.query(sqlHerb, saveHerb).then(herbs => {
+    res.render('pages/herbs/details.ejs', { herb: herbs.rows[0] });
+  }).catch(error =>
+    handleError(error, res));
 }
 
 function updateDetails(req, res) {
-    const idParam = req.params.id;
-    const { name,image_url, case_using, preparation, description} = req.body;
-    const saveValus = [name, image_url, case_using, preparation, description ];
-    // const updatSql = `UPDATE add_herb SET name=$1, case_using=$2, preparation=$3, description=$4, image_url=$5 WHERE id=$6;`;
-    const insertQuery = 'INSERT INTO add_suggestions (name, image_url, case_using, preparation, description) Values($1, $2, $3, $4, $5);'
-    client.query(insertQuery, saveValus).then(() => {
-        res.redirect(`/collection/${idParam}`);
-    });
+  const idParam = req.params.id;
+  const { name,image_url, case_using, preparation, description} = req.body;
+  const saveValus = [name, image_url, case_using, preparation, description ];
+  // const updatSql = `UPDATE add_herb SET name=$1, case_using=$2, preparation=$3, description=$4, image_url=$5 WHERE id=$6;`;
+  const insertQuery = 'INSERT INTO add_suggestions (name, image_url, case_using, preparation, description) Values($1, $2, $3, $4, $5);';
+  client.query(insertQuery, saveValus).then(() => {
+    res.redirect(`/collection/${idParam}`);
+  });
 }
 
 function handleSearchReq(req, res) {
-    res.render('pages/searches/search.ejs');
+  res.render('pages/searches/search.ejs');
 }
 
 function handleShowReq(req, res) {
-    const diseaseName = req.body.disease;
-    const url = 'https://herbal-remedy.herokuapp.com/herps/api';
+  const diseaseName = req.body.disease;
+  const url = 'https://herbal-remedy.herokuapp.com/herps/api';
 
-    superagent.get(url).then(resData => {
-        return resData.body.filter(herb => {
-            if (herb.case_using.includes(diseaseName)) {
-                return new Herp(herb);
-            }
-        });
-    }).then(results => {
-        res.render('pages/searches/show', { searchResults: results });
-    }).catch(error => {
-        res.status(500).render('pages/error');
+  superagent.get(url).then(resData => {
+    return resData.body.filter(herb => {
+      if (herb.case_using.includes(diseaseName)) {
+        return new Herp(herb);
+      }
     });
+  }).then(results => {
+    res.render('pages/searches/show', { searchResults: results });
+  }).catch(error => {
+    res.status(500).render('pages/error');
+  });
 }
 
 function deleteDetails(req, res) {
-    const herbID = req.params.id;
-    const deleteQuery = 'DELETE FROM add_herb WHERE id=$1;';
-    const saveValus = [herbID];
-    client.query(deleteQuery, saveValus).then(() => {
-        res.redirect('/collection');
-    });
+  const herbID = req.params.id;
+  const deleteQuery = 'DELETE FROM add_herb WHERE id=$1;';
+  const saveValus = [herbID];
+  client.query(deleteQuery, saveValus).then(() => {
+    res.redirect('/collection');
+  });
 
 }
 
 function handleAbout(req, res) {
-    res.render('pages/about');
+  res.render('pages/about');
 }
 
 
 
 function getUserSuggestions(req, res) {
-    const getQuery = 'SELECT * FROM add_suggestions;'
+  const getQuery = 'SELECT * FROM add_suggestions;';
 
-    client.query(getQuery).then(result => {
-        // console.log(PASS);
+  client.query(getQuery).then(result => {
 
-        res.render('pages/dashboard', {results: result.rows , PASS:PASS})
-        // console.log(result.rows);
-    })
+    res.render('pages/dashboard', {results: result.rows , PASS:PASS});
+  });
 }
 
 
 function updateSuggestionTable(req, res) {
-    const herbId = req.params.id
+  const herbId = req.params.id;
 
-    const updateQuery = 'SELECT * FROM add_suggestions WHERE id=$1'
-    const safeVal = [herbId]
+  const updateQuery = 'SELECT * FROM add_suggestions WHERE id=$1';
+  const safeVal = [herbId];
 
-    client.query(updateQuery, safeVal).then(results => {
-        console.log(results.rows);
-        results.rows.forEach(element => {
-            const saveValus = [element.name, element.image_url, element.case_using, element.preparation, element.description];
-            const insertQuery = 'INSERT INTO add_herb (name, image_url, case_using, preparation, description) Values($1, $2, $3, $4, $5);' 
+  client.query(updateQuery, safeVal).then(results => {
+    results.rows.forEach(element => {
+      const saveValus = [element.name, element.image_url, element.case_using, element.preparation, element.description];
+      const insertQuery = 'INSERT INTO add_herb (name, image_url, case_using, preparation, description) Values($1, $2, $3, $4, $5);';
 
-            client.query(insertQuery, saveValus ).then(() => {
-               res.redirect(`/suggestion/delete/${herbId}`)
-            })
+      client.query(insertQuery, saveValus ).then(() => {
+        res.redirect(`/suggestion/delete/${herbId}`);
+      });
 
-        })
+    });
 
 
-    })
+  });
 }
 
 function deleteFromSuggestionTable(req, res) {
-    const herbId = req.params.id
-    const deleteQuery = `DELETE FROM add_suggestions WHERE id=$1;`
-    const safeValues = [herbId]
+  const herbId = req.params.id;
+  const deleteQuery = `DELETE FROM add_suggestions WHERE id=$1;`;
+  const safeValues = [herbId];
 
-    client.query(deleteQuery, safeValues).then(() => {
-        res.redirect('/dashboard')
+  client.query(deleteQuery, safeValues).then(() => {
+    res.redirect('/dashboard');
 
-    })
+  });
 
 }
 // constructor functions
 function Herp(data) {
-    this.name = data.name;
-    this.image_url = data.image_url;
-    this.case_using = data.case_using;
-    this.preparation = data.preparation;
-    this.description = data.description;
+  this.name = data.name;
+  this.image_url = data.image_url;
+  this.case_using = data.case_using;
+  this.preparation = data.preparation;
+  this.description = data.description;
 }
 
-function hello() {
-    console.log('hello')
-}
