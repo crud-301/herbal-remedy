@@ -489,9 +489,11 @@ footer a {
 footer p {
     margin-top: 50px;
 }
-=======
 
-/************about**************
- #icon-footer {
-     padding-top: 30px;
- }
+
+
+table, th, td {
+  border: 1px solid black;
+}
+
+

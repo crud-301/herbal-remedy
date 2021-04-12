@@ -6,12 +6,14 @@ const express = require('express');
 const superagent = require('superagent');
 const cors = require('cors');
 const pg = require('pg');
+
 const methodOverride = require('method-override');
 const app = express();
 
 // environment variables
 const PORT = process.env.PORT || 3030;
 const DATABASE_URL = process.env.DATABASE_URL;
+const PASS = process.env.PASS;
 
 // middleware
 app.use(cors());
@@ -46,6 +48,11 @@ app.get('/collection/:id', getOneHerb);
 app.put('/collection/:id', updateDetails);
 app.delete('/collection/:id', deleteDetails);
 
+app.get('/dashboard/:id', updateSuggestionTable)
+app.get('/suggestion/delete/:id', deleteFromSuggestionTable)
+
+app.get('/dashboard', getUserSuggestions)
+
 
 // callback functions
 function renderAsAPI(req, res) {
@@ -73,6 +80,8 @@ function renderHome(req, res) {
         }
     });
 }
+
+
 
 
 function renderCollectionPageFromDb(req, res) {
@@ -107,10 +116,11 @@ function getOneHerb(req, res) {
 
 function updateDetails(req, res) {
     const idParam = req.params.id;
-    const { name, case_using, preparation, description, image_url } = req.body;
-    const saveValus = [name, case_using, preparation, description, image_url, idParam];
-    const updatSql = `UPDATE add_herb SET name=$1, case_using=$2, preparation=$3, description=$4, image_url=$5 WHERE id=$6;`;
-    client.query(updatSql, saveValus).then(() => {
+    const { name,image_url, case_using, preparation, description} = req.body;
+    const saveValus = [name, image_url, case_using, preparation, description ];
+    // const updatSql = `UPDATE add_herb SET name=$1, case_using=$2, preparation=$3, description=$4, image_url=$5 WHERE id=$6;`;
+    const insertQuery = 'INSERT INTO add_suggestions (name, image_url, case_using, preparation, description) Values($1, $2, $3, $4, $5);'
+    client.query(insertQuery, saveValus).then(() => {
         res.redirect(`/collection/${idParam}`);
     });
 }
@@ -149,6 +159,54 @@ function deleteDetails(req, res) {
 function handleAbout(req, res) {
     res.render('pages/about');
 }
+
+
+
+function getUserSuggestions(req, res) {
+    const getQuery = 'SELECT * FROM add_suggestions;'
+
+    client.query(getQuery).then(result => {
+        // console.log(PASS);
+
+        res.render('pages/dashboard', {results: result.rows , PASS:PASS})
+        // console.log(result.rows);
+    })
+}
+
+
+function updateSuggestionTable(req, res) {
+    const herbId = req.params.id
+
+    const updateQuery = 'SELECT * FROM add_suggestions WHERE id=$1'
+    const safeVal = [herbId]
+
+    client.query(updateQuery, safeVal).then(results => {
+        console.log(results.rows);
+        results.rows.forEach(element => {
+            const saveValus = [element.name, element.image_url, element.case_using, element.preparation, element.description];
+            const insertQuery = 'INSERT INTO add_herb (name, image_url, case_using, preparation, description) Values($1, $2, $3, $4, $5);' 
+
+            client.query(insertQuery, saveValus ).then(() => {
+               res.redirect(`/suggestion/delete/${herbId}`)
+            })
+
+        })
+
+
+    })
+}
+
+function deleteFromSuggestionTable(req, res) {
+    const herbId = req.params.id
+    const deleteQuery = `DELETE FROM add_suggestions WHERE id=$1;`
+    const safeValues = [herbId]
+
+    client.query(deleteQuery, safeValues).then(() => {
+        res.redirect('/dashboard')
+
+    })
+
+}
 // constructor functions
 function Herp(data) {
     this.name = data.name;
@@ -156,4 +214,8 @@ function Herp(data) {
     this.case_using = data.case_using;
     this.preparation = data.preparation;
     this.description = data.description;
+}
+
+function hello() {
+    console.log('hello')
 }
