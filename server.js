@@ -78,6 +78,8 @@ function renderHome(req, res) {
     } else {
       res.render('pages/index', { result: result.rows });
     }
+  }).catch(error => {
+    handleError(error, res);
   });
 }
 
@@ -100,6 +102,8 @@ function addHerbToDB(req, res) {
   const safeValues = [name, image_url, case_using, preparation, description];
   client.query(insertQuery, safeValues).then(() => {
     res.redirect('/collection');
+  }).catch(error => {
+    handleError(error, res);
   });
 }
 
@@ -122,11 +126,15 @@ function updateDetails(req, res) {
   const insertQuery = 'INSERT INTO add_suggestions (name, image_url, case_using, preparation, description) Values($1, $2, $3, $4, $5);';
   client.query(insertQuery, saveValus).then(() => {
     res.redirect(`/collection/${idParam}`);
+  }).catch(error => {
+    handleError(error, res);
   });
 }
 
 function handleSearchReq(req, res) {
-  res.render('pages/searches/search.ejs');
+  res.render('pages/searches/search.ejs').catch(error => {
+    handleError(error, res);
+  });
 }
 
 function handleShowReq(req, res) {
@@ -152,12 +160,16 @@ function deleteDetails(req, res) {
   const saveValus = [herbID];
   client.query(deleteQuery, saveValus).then(() => {
     res.redirect('/collection');
+  }).catch(error => {
+    handleError(error, res);
   });
 
 }
 
 function handleAbout(req, res) {
-  res.render('pages/about');
+  res.render('pages/about').catch(error => {
+    handleError(error, res);
+  });
 }
 
 
@@ -168,6 +180,8 @@ function getUserSuggestions(req, res) {
   client.query(getQuery).then(result => {
 
     res.render('pages/dashboard', {results: result.rows , PASS:PASS});
+  }).catch(error => {
+    handleError(error, res);
   });
 }
 
@@ -185,11 +199,10 @@ function updateSuggestionTable(req, res) {
 
       client.query(insertQuery, saveValus ).then(() => {
         res.redirect(`/suggestion/delete/${herbId}`);
+      }).catch(error => {
+        handleError(error, res);
       });
-
     });
-
-
   });
 }
 
@@ -201,6 +214,8 @@ function deleteFromSuggestionTable(req, res) {
   client.query(deleteQuery, safeValues).then(() => {
     res.redirect('/dashboard');
 
+  }).catch(error => {
+    handleError(error, res);
   });
 
 }
@@ -211,5 +226,9 @@ function Herp(data) {
   this.case_using = data.case_using;
   this.preparation = data.preparation;
   this.description = data.description;
+}
+
+function handleError(error,res){
+  res.render('pages/error', { error: error });
 }
 
