@@ -163,8 +163,10 @@ img {
 }
 
 #main-collection {
+    /* margin-top: 3%;
+    margin-bottom: 80px; */
     margin-top: 3%;
-    margin-bottom: 80px;
+    margin-bottom: 100%;
 }
 
 #div-allCollections {
