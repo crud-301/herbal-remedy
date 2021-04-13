@@ -1,10 +1,20 @@
-<section id="updat-form">
-    <form action="/collection/<%=herb.id%>?_method=PUT" method="POST">
-        <input type="text" name="name" value="<%=herb.name%>">
-        <input type="text" name="case_using" value="<%=herb.case_using%>">
-        <input type="text" name="preparation" value="<%=herb.preparation%>">
-        <input type="text" name="description" value="<%=herb.description%>">
-        <input type="text" name="image_url" value="<%=herb.image_url%>">
-        <input id="submitButt" type="submit" value="submit">
+<section id="updat-sec">
+    <form id="updat-form" action="/collection/<%=herb.id%>?_method=PUT" method="POST">
+
+        <input type="hidden" name="name" value="<%=herb.name%>">
+        <p>case_using</p>
+        <textarea class="describtion" type="text" cols="25" rows="5" name="case_using"  value="<%=herb.case_using%>">"<%=herb.case_using%>"</textarea>
+
+        <!-- <input type="text" name="case_using" value="<%=herb.case_using%>"> -->
+        <p>preparation</p>
+        <textarea class="describtion" type="text" cols="25" rows="5" name="preparation"  value="<%=herb.preparation%>">"<%=herb.preparation%>"</textarea>
+        <!-- <input type="text" name="preparation" value="<%=herb.preparation%>"> -->
+        <p>describtion</p>
+        <textarea class="describtion" type="text" cols="25" rows="5" name="description"  value="<%=herb.description%>">"<%=herb.description%>"</textarea>
+        <p>image_url</p>
+        <textarea class="describtion" type="text" cols="25" rows="5" name="description"  value="<%=herb.image_url%>">"<%=herb.image_url%>"</textarea>
+
+        <!-- <input type="text" name="image_url" value="<%=herb.image_url%>"> -->
+        <button id="submitButt" type="submit" value="submit">Submit</button>
     </form>
 </section>

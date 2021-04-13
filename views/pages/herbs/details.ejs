@@ -20,7 +20,7 @@
         <p><%= herb.preparation%></p> 
         <p> <%= herb.description%></p>
         <div class="updat-butt">
-        <button id="update-butt" onclick="showBottom()">Update</button>
+        <button  id="update-butt" onclick="showBottom()">Update</button>
         <form action="/collection/<%=herb.id%>?_method=DELETE" method="POST">
         <input id="delete-butt" type="submit" value="Delete">
         </form>
