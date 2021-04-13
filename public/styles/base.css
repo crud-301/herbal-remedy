@@ -524,11 +524,6 @@ border-radius: 3px;
 
 
 
-table, th, td {
-  border: 1px solid black;
-}
-
-
 /************about**************
  #icon-footer {
      padding-top: 30px;
@@ -567,3 +562,82 @@ border: none;
     margin-bottom: 50px;
     font-size: 20px;
 }
+
+
+/*----------dashboard---------------*/
+
+
+#main-dash{
+    display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+margin-bottom: 25%;
+
+}
+#password{
+    font-size: medium;
+    margin-top: 30px;
+    padding: 15px;
+    width: 250px;
+    text-align: center;
+    border: none;
+    transition: all .5s;
+}
+#sub-pass{
+background-color: #3f6e45;
+padding: 10px;
+width: 150px;
+padding-left: 3%;
+}
+#passWordForm input :hover {
+    transition: all .5s;
+    width: 350px;
+    border-radius: 10px;
+    border: none;
+    box-shadow: 0px 6px 16px rgb(165, 162, 162);
+}
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 50%;
+    margin-top: 20%;
+    border: 1px solid rgb(88, 128, 78);
+}
+ 
+  td, th {
+    border: 1px solid rgb(88, 128, 78);
+    text-align: left;
+    padding: 8px;
+  }
+
+  #remov-butt ,#add-butt{
+      background-color:  rgb(201, 40, 40);
+      border: none;
+      margin: 4px; 
+      text-decoration: none;
+      font-size: large;
+      width: 150px;
+      height: 50px;
+      padding: 6px;
+      border-radius: 4px;
+      transition: all .4s;
+      cursor: pointer;
+      line-height: 60px;
+  }
+  #add-butt{
+    background-color: green;
+  }
+  #remov-butt:hover ,#add-butt:hover{
+    background-color: rgba(33, 58, 44, 0.363);
+    background-color: #ddd;
+    width: 175px;
+    color: black;
+    font-size: large;
+    border: none;
+    box-shadow: 0 0 10px #ddd, 0 0 10px #ddd, 0 0 40px #ddd;
+}
+  #test{
+    border: 1px solid rgb(88, 128, 78);
+  }
