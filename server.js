@@ -37,8 +37,11 @@ client.connect().then(() => {
   });
 });
 
-
 // routes
+app.get('/home', renderHome);
+app.get('/herps/api', renderAsAPI);
+app.get('/search', handleSearchReq);
+app.post('/show', handleShowReq);
 app.get('/', renderHome);
 app.get('/about', handleAbout);
 app.get('/herps/api', renderAsAPI);
@@ -182,10 +185,11 @@ function updateSuggestionTable(req, res) {
 
   client.query(updateQuery, safeVal).then(results => {
     results.rows.forEach(element => {
-      const saveValus = [element.name, element.image_url, element.case_using, element.preparation, element.description];
-      const insertQuery = 'INSERT INTO add_herb (name, image_url, case_using, preparation, description) Values($1, $2, $3, $4, $5);';
+      const saveValus = [element.name, element.image_url, element.case_using, element.preparation, element.description, element.name ];
+      const updateQ = `UPDATE add_herb SET name=$1, image_url=$2, case_using=$3, preparation=$4, description=$5 WHERE name=$6;`
+      // const insertQuery = 'INSERT INTO add_herb (name, image_url, case_using, preparation, description) Values($1, $2, $3, $4, $5);';
 
-      client.query(insertQuery, saveValus ).then(() => {
+      client.query(updateQ, saveValus ).then(() => {
         res.redirect(`/suggestion/delete/${herbId}`);
       });
 
