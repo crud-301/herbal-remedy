@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+/* eslint-disable no-unused-vars */
 'use strict';
 
 // application dependencies
@@ -212,4 +214,3 @@ function Herp(data) {
   this.preparation = data.preparation;
   this.description = data.description;
 }
-
