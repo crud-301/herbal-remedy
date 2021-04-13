@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../layout/head.ejs') %>
+</head>
+<body>
+    <header>
+        <%- include('../layout/header.ejs') %>
+    </header>
+    <div class="grass">
+    
+    </div>
+    <main id="main-dash">
+        <form id="passWordForm" action="/dashboard/open" method="POST">
+            <input type="password" name="password" id="password">
+                <input value="Log In" id="sub-pass" type="submit">
+        </form>
+    </main>
+    <div class="grass">
+    
+    </div>
+    <footer>
+        <%- include('../layout/footer.ejs') %>
+    </footer>
+</body>
+</html>

@@ -727,3 +727,69 @@ table {
   #test{
     border: 1px solid rgb(88, 128, 78);
   }
+
+
+  /* ---------------------*/
+  #body-dash {
+      text-align: center;
+      /* background-color: #3f6e45; */
+  }
+  #body-dash div {
+      padding: 15px;
+      text-align: left;
+      border: #3f6e45 2px solid;
+      width: 50%;
+      margin: 0 auto;
+      line-height: 20px;
+      margin-bottom: 3%;
+  }
+
+  #body-dash div p span {
+      font-size: large;
+      font-weight: bold;
+  }
+
+  #body-dash div p {
+      line-height: 30px;
+  }
+
+  #body-dash section {
+    display: flex;
+    justify-content: center;
+  }
+  #body-dash section form {
+      padding: 10px;
+  }
+
+  #body-dash section form input {
+      width: 70px;
+      height: 30px;
+  }
+
+  #body-dash section form .accept:hover {
+      background-color: green;
+  }
+  #body-dash section form .reject:hover {
+      background-color: red;
+  }
+
+  #body-dash {
+      margin-top: 6%;
+  }
+
+  #body-dash h1 {
+      margin-bottom: 3%;
+      font-weight: bold;
+      font-size: larger;
+  }
+
+
+  #dash-body {
+      background-image: url('../img/bd-about.jpg') ;
+      background-size: cover;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+  
+  }
