@@ -416,7 +416,8 @@ display: none;
     bottom: 5
 }
 .updat-butt input{
-    background-color:snow;
+   
+    bottom: 5 ;
     border: none;
     float: right;
     margin: 1%;
@@ -424,22 +425,37 @@ display: none;
     width: 30%;
     margin-bottom: 3%;
     margin-right: 2%;
-    bottom: 5
+ 
+
 }
-#submitButt{
-    background-color: rgb(51, 187, 51);
-    color: seashell;
-    width: 100px;
-    padding: 5px;
-    border: none;
-    margin-right: 100px;
-}
+
+
 
 #icon-footer {
     padding-top: 30px;
 }
 
-
+#updat-form input{
+font-size: smaller;
+height: 66px;
+width: 100%;
+margin-right: 3%;
+}
+#submitButt{
+    background-color: rgb(51, 187, 51);
+    color: seashell;
+    width: 100px;
+    height: 50px;
+    padding: 5px;
+    border: none;
+    margin-right: 100px;
+}
+.describtion{
+    height: 100px;
+    width: 250px;
+   font-size: smaller;
+   border: none;
+}
 /************about**************/
 
 #about-main {
