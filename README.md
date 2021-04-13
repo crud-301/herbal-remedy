@@ -68,8 +68,17 @@ An updated version of any web browser with internet connection.
 |id|name|image_url|origin|description|
 |--|----|---------|------|-----------|  
 
+## Wireframes
+![wireframes](public/img/wireFrame.jpg)
+
+## domain model
+
+![domain model](public/img/domain-model.PNG)
 ## Change Log
 08-04-2021 6:20pm - Application now has a fully-functional express server. 
+
+## Project Management Board
+[User Stories](https://trello.com/b/GDHu5V5R/code301-project)
 
 ## Credits and Collaborations
 * [code fellows academy](https://www.codefellows.org/)

@@ -35,24 +35,11 @@ client.connect().then(() => {
     });
 });
 
-
 // routes
-app.get('/', renderHome);
-app.get('/about', handleAbout)
+app.get('/home', renderHome);
 app.get('/herps/api', renderAsAPI);
 app.get('/search', handleSearchReq);
 app.post('/show', handleShowReq);
-app.post('/collection', addHerbToDB);
-app.get('/collection', renderCollectionPageFromDb);
-app.get('/collection/:id', getOneHerb);
-app.put('/collection/:id', updateDetails);
-app.delete('/collection/:id', deleteDetails);
-
-app.get('/dashboard/:id', updateSuggestionTable)
-app.get('/suggestion/delete/:id', deleteFromSuggestionTable)
-
-app.get('/dashboard', getUserSuggestions)
-
 
 // callback functions
 function renderAsAPI(req, res) {
