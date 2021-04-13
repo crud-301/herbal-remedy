@@ -1,6 +1,7 @@
 'use strict';
 
 // application dependencies
+
 require('dotenv').config();
 const express = require('express');
 const superagent = require('superagent');
@@ -51,10 +52,25 @@ app.get('/collection/:id', getOneHerb);
 app.put('/collection/:id', updateDetails);
 app.delete('/collection/:id', deleteDetails);
 
-app.get('/dashboard/:id', updateSuggestionTable);
-app.get('/suggestion/delete/:id', deleteFromSuggestionTable);
+app.put('/dashboard/:id', updateSuggestionTable);
+app.delete('/suggestion/delete/:id', deleteFromSuggestionTable);
 
-app.get('/dashboard', getUserSuggestions);
+app.get('/dashboard',checkDashboardPassword );
+app.post('/dashboard/open', getUserSuggestions);
+
+function getUserSuggestions(req, res) {
+  const pass = req.body.password
+  const getQuery = 'SELECT * FROM add_suggestions;';
+  client.query(getQuery).then(result => {
+    if(pass === PASS) {
+
+      res.render('pages/dashboard', {results: result.rows } )
+    }else {
+      res.render('pages/loginDash')
+    }
+  })
+}
+
 
 
 // callback functions
@@ -121,7 +137,6 @@ function updateDetails(req, res) {
   const idParam = req.params.id;
   const { name,image_url, case_using, preparation, description} = req.body;
   const saveValus = [name, image_url, case_using, preparation, description ];
-  // const updatSql = `UPDATE add_herb SET name=$1, case_using=$2, preparation=$3, description=$4, image_url=$5 WHERE id=$6;`;
   const insertQuery = 'INSERT INTO add_suggestions (name, image_url, case_using, preparation, description) Values($1, $2, $3, $4, $5);';
   client.query(insertQuery, saveValus).then(() => {
     res.redirect(`/collection/${idParam}`);
@@ -165,13 +180,9 @@ function handleAbout(req, res) {
 
 
 
-function getUserSuggestions(req, res) {
-  const getQuery = 'SELECT * FROM add_suggestions;';
+function checkDashboardPassword(req, res) {
 
-  client.query(getQuery).then(result => {
-
-    res.render('pages/dashboard', {results: result.rows , PASS:PASS});
-  });
+  res.render('pages/loginDash');
 }
 
 
@@ -188,7 +199,7 @@ function updateSuggestionTable(req, res) {
       // const insertQuery = 'INSERT INTO add_herb (name, image_url, case_using, preparation, description) Values($1, $2, $3, $4, $5);';
 
       client.query(updateQ, saveValus ).then(() => {
-        res.redirect(`/suggestion/delete/${herbId}`);
+        res.redirect(`/collection`);
       });
 
     });
@@ -203,7 +214,7 @@ function deleteFromSuggestionTable(req, res) {
   const safeValues = [herbId];
 
   client.query(deleteQuery, safeValues).then(() => {
-    res.redirect('/dashboard');
+    res.render('pages/loginDash');
 
   });
 
