@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../layout/head.ejs') %>
+</head>
+<body>
+    <header>
+        <%- include('../layout/header.ejs') %>
+
+
+    </header>
+    <div class="grass">
+    
+    </div>
+    <main id="main-dash">
+        <form id="passWordForm" action="" >
+            <input type="password" name="password" id="password">
+           <!-- <% for(let i=0; i < results.length; i++){ %>
+            <% } %>  -->
+
+            <input type="hidden"  value="<%=PASS%>" name="PASS">
+            <input type="hidden" value="<%=JSON.stringify(results)%>"  name="herb" >
+                <input id="sub-pass" type="submit" onclick="showPssword()">
+        </form>
+
+        <!-- <div id="div-dashboard">
+            <li>suggestion</li>
+            <li>suggestion</li>
+            <li>suggestion</li>
+            <li>suggestion</li>
+        </div> -->
+    </main>
+
+    <script src="/js/app.js"></script>
+    <div class="grass">
+    
+    </div>
+    <footer>
+        <%- include('../layout/footer.ejs') %>
+    </footer>
+</body>
+</html>

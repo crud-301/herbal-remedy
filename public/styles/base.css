@@ -62,12 +62,27 @@ header nav ul li:hover {
     box-shadow: 0 0 10px rgb(211, 211, 151), 0 0 10px rgb(211, 211, 151), 0 0 40px rgb(211, 211, 151);
 
 }
+#a{
+    background-color: black;
+}
+#d{
+    background-color: black;
+}
 
 .img-index {
     width: 250px;
     height: 250px;
-}
+    /* transform: rotate(360deg); */
+    transition: all .5s;
+  
 
+}
+.img-index:hover{
+    transform:translateY(25px);
+    /* transform: scale(.9); */
+    transition: all .3s;
+    box-shadow: 0 0 10px rgb(135, 248, 5);
+}
 #index-main {
     padding: 30px;
     /* height: 100vh; */
@@ -190,6 +205,10 @@ img {
     width: 300px;
     height: 300px;
     box-shadow: 0px 6px 16px rgb(94, 89, 89);
+}
+.img-collection:hover{
+    transform: scaleX(1.1);
+    transition: all .4s;
 }
 
 .div-collection p {
@@ -523,6 +542,9 @@ background: none;
 border-radius: 3px;
 }
 
+
+
+
 /************about**************
  #icon-footer {
      padding-top: 30px;
@@ -561,3 +583,94 @@ border: none;
     margin-bottom: 50px;
     font-size: 20px;
 }
+
+
+/*----------dashboard---------------*/
+
+
+#main-dash{
+    display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+margin-bottom: 25%;
+
+}
+#password{
+    font-size: medium;
+    margin-top: 30px;
+    padding: 15px;
+    width: 250px;
+    text-align: center;
+    border: none;
+    transition: all .5s;
+}
+#sub-pass{
+background-color: #3f6e45;
+padding: 10px;
+width: 150px;
+padding-left: 3%;
+}
+#passWordForm input :hover {
+    transition: all .5s;
+    width: 350px;
+    border-radius: 10px;
+    border: none;
+    box-shadow: 0px 6px 16px rgb(165, 162, 162);
+}
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 50%;
+    margin-top: 20%;
+    border: 2px solid rgb(88, 128, 78);
+}
+ 
+  td{
+    border: 2px solid rgb(88, 128, 78);
+    text-align: left;
+    font-size: 15px;
+    height: 57px;
+    padding: 4px;
+  } 
+  th {
+    border: 3px solid rgb(88, 128, 78);
+    text-align: revert;
+    padding: 8px;
+    height: 50px;
+    font-weight: bold;
+    color: cornsilk;
+  }
+
+  #remov-butt ,#add-butt{
+      background-color:  rgb(201, 40, 40);
+      border: none;
+      margin: 4px; 
+      text-decoration: none;
+      font-size: large;
+      width: 150px;
+      height: 50px;
+      padding: 6px;
+      border-radius: 4px;
+      transition: all .4s;
+      cursor: pointer;
+      line-height: 60px;
+      content:'X';
+  }
+  #add-butt{
+    background-color: green;
+    content:'X';
+  }
+  #remov-butt:hover ,#add-butt:hover{
+    background-color: rgba(33, 58, 44, 0.363);
+    background-color: #ddd;
+    width: 175px;
+    color: black;
+    font-size: large;
+    border: none;
+    box-shadow: 0 0 10px #ddd, 0 0 10px #ddd, 0 0 40px #ddd;
+}
+  #test{
+    border: 1px solid rgb(88, 128, 78);
+  }
