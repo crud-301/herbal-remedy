@@ -2,7 +2,37 @@
 <html lang="en">
 <head>
     <%- include('../layout/head.ejs') %>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script  type='text/javascript'>
+            $(function(){
+                $('#deleteForm').click(function(event) {
+                    event.preventDefault()
+                    alert('delete success')
+                    let formActionDel = $(this).attr('action')
+                    $.ajax({
+                        url: formActionDel,
+                        type: 'DELETE',
+
+                    })
+
+                })
+                $('#updateForm').click(function(event) {
+                    event.preventDefault()
+                    alert('update success')
+                    let formActionUp = $(this).attr('action')
+                    $.ajax({
+                        url: formActionUp,
+                        type: 'UPDATE',
+                    })
+                    
+                })
+
+
+            });
+    </script>
 </head>
+
 <body id="dash-body" >
   
 
@@ -18,11 +48,11 @@
                 <p><span>Description : </span> <%=herb.description%></p>
                 <section>
     
-                    <form action='/dashboard/<%= herb.id%>?_method=PUT' method="POST">
+                <form action='/dashboard/<%= herb.id%>' method="POST" id="updateForm">
                         <input class="accept" type="submit" value="Accept">
-                    </form>
-                    <form action="/suggestion/delete/<%=herb.id%>?_method=DELETE" method="POST">
-                        <input class="reject" type="submit"  value="Reject">
+                    </form> 
+                    <form action="/suggestion/delete/<%=herb.id%>" method="POST" id="deleteForm">
+                        <input class="reject" type="submit"  value="Reject" id="btn">
                     </form>
                 </section>
             </div>

@@ -1,1 +1,57 @@
+#right-index a:hover {
+    background-color: rgba(121, 202, 157, 0.671);
+}
 
+.search-input:hover {
+    transition: all .5s;
+    width: 350px;
+    border-radius: 10px;
+    border: none;
+    box-shadow: 0px 6px 16px rgb(165, 162, 162);
+}
+
+#main-search form button:hover{
+    background-color: rgba(33, 58, 44, 0.363);
+    background-color: #ddd;
+    width: 175px;
+    color: black;
+    font-size: large;
+    border: none;
+    box-shadow: 0 0 10px #ddd, 0 0 10px #ddd, 0 0 40px #ddd;
+}
+
+#right-index a:hover {
+    background-color: rgba(121, 202, 157, 0.671);
+}
+
+#updat-form input[type=text]:focus {
+    border: 3px solid #555;
+}
+
+#sec-about form input:hover {
+    border: 1px solid gray;
+}
+
+#sec-about form button:hover {
+    width: 175px;
+    color: white;
+    font-size: larger;
+    border: none;
+    box-shadow: 0 0 10px rgb(21, 204, 143), 0 0 10px rgb(21, 204, 143), 0 0 40px rgb(21, 204, 143);
+
+}
+
+#passWordForm input :hover {
+    transition: all .5s;
+    width: 350px;
+    border-radius: 10px;
+    border: none;
+    box-shadow: 0px 6px 16px rgb(165, 162, 162);
+}
+
+#body-dash section form .accept:hover {
+    background-color: green;
+}
+#body-dash section form .reject:hover {
+    background-color: red;
+}
