@@ -255,6 +255,7 @@ console.log(element.id)
   
     });
   }
+  )}
   
 function deleteFromSuggestionTable(req, res) {
   const herbId = req.params.id;
