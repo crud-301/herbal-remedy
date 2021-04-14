@@ -3,10 +3,9 @@
 **Authors**
 1. Mohammad Za'areer
 2. Ghofran Dayyat
-3. Qais Waleed Ata
-4. ali abu-yahia
-5. Sara altaweel
-6. mohammad al-khazali
+3. Qais Waleed 
+4. Sara altaweel
+5. mohammad al-khazali
  
 **Version**: 1.0.0
 
