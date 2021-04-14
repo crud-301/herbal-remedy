@@ -2,6 +2,35 @@
 <html lang="en">
 <head>
     <%- include('../layout/head.ejs') %>
+</head>
+
+<body id="dash-body" >
+  
+    <main id="body-dash">
+        <h1>Total of Suggestions : <%= results.length%></h1>
+        <%results.forEach(herb => { %>
+            <div >
+                
+                <p><span> Name : </span> <%=herb.name%></p>
+                <p> <span>Image url : </span><%=herb.image_url%></p>
+                <p><span>Case Using : </span><%=herb.case_using%></p>
+                <p><span>Preparation : </span><%=herb.preparation%></p>
+                <p><span>Description : </span> <%=herb.description%></p>
+                <section>
+    
+                <form action="/dashboard/<%=herb.id%>?_method=PUT"  method="POST" id="updateForm">
+                        <input class="accept" type="submit" value="Accept">
+                </form>
+
+                <form action="/suggestion/delete/<%=herb.id%>" method="POST" id="deleteForm">
+                        <input class="reject" type="submit"  value="Reject" id="btn">
+                 </form>
+                </section>
+            </div>
+    
+        <%} )%>
+    </main>
+</body>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <script  type='text/javascript'>
@@ -15,51 +44,19 @@
                         type: 'DELETE',
 
                     })
+                    $(document).ready(function() {
+                    setInterval(function() {
+                        cache_clear()
+                    }, 100);
+                    });
 
+                    function cache_clear() {
+                    window.location.reload(true);
+                    }
                 })
-                $('#updateForm').click(function(event) {
-                    event.preventDefault()
-                    alert('update success')
-                    let formActionUp = $(this).attr('action')
-                    $.ajax({
-                        url: formActionUp,
-                        type: 'UPDATE',
-                    })
-                    
-                })
+
 
 
             });
     </script>
-</head>
-
-<body id="dash-body" >
-  
-
-    <main id="body-dash">
-        <h1>Total of Suggestions : <%= results.length%></h1>
-        <%results.forEach(herb => { %>
-            <div >
-                
-                <p><span> Name : </span> <%=herb.name%></p>
-                <p> <span>Image url : </span><%=herb.image_url%></p>
-                <p><span>Case Using : </span><%=herb.case_using%></p>
-                <p><span>Preparation : </span><%=herb.preparation%></p>
-                <p><span>Description : </span> <%=herb.description%></p>
-                <section>
-    
-                <form action='/dashboard/<%= herb.id%>' method="POST" id="updateForm">
-                        <input class="accept" type="submit" value="Accept">
-                    </form> 
-                    <form action="/suggestion/delete/<%=herb.id%>" method="POST" id="deleteForm">
-                        <input class="reject" type="submit"  value="Reject" id="btn">
-                    </form>
-                </section>
-            </div>
-    
-        <%} )%>
-    </main>
-
-    
-</body>
 </html>

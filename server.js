@@ -169,29 +169,55 @@ function handleAbout(req, res) {
   }
   
 function checkDashboardPassword(req, res) {
-  res.render('pages/loginDash');
+  res.render('pages/loginDash', { PASS : PASS });
   }
 
-function updateSuggestionTable(req, res) {
-  const herbId = req.params.id;
+
+  app.get('/suggestion/delete/:id', checkDelete);
+
+  function checkDelete(req, res){
+    const herbId = req.params.id;
   
-  const updateQuery = 'SELECT * FROM add_suggestions WHERE id=$1';
-  const safeVal = [herbId];
+    const safeVal = [herbId];
+    const updateQuery = 'SELECT * FROM add_suggestions WHERE id=$1;';
   
-  client.query(updateQuery, safeVal).then(results => {
-    results.rows.forEach(element => {
-      const saveValus = [element.name, element.image_url, element.case_using, element.preparation, element.description, element.name ];
-      const updateQ = `UPDATE add_herb SET name=$1, image_url=$2, case_using=$3, preparation=$4, description=$5 WHERE name=$6;`
-      
-      client.query(updateQ, saveValus ).then(() => {
-        res.redirect(`/suggestion/delete/${herbId}`);
+    client.query(updateQuery, safeVal).then(results => {
+      results.rows.forEach(element => {
+        // const saveValus = [element.name, element.image_url, element.case_using, element.preparation, element.description, element.name ];
+        // const updateQ = `UPDATE add_herb SET name=$1, image_url=$2, case_using=$3, preparation=$4, description=$5 WHERE name=$6;`;
+  
+        const saveValues= [element.name];
+        const deleteQ = 'DELETE FROM add_suggestions WHERE name=$1;';
+        client.query(deleteQ, saveValues).then(() => {
+          res.redirect('/collection');
+        });
       });
     });
-  }).catch(error => {
-    errorPage(error, res)
-  });
-}
+  }
+  
 
+function updateSuggestionTable(req, res) {
+    const herbId = req.params.id;
+  
+    const updateQuery = 'SELECT * FROM add_suggestions WHERE id=$1;';
+    const safeVal = [herbId];
+  
+    client.query(updateQuery, safeVal).then(results => {
+      results.rows.forEach(element => {
+        const saveValus = [element.name, element.image_url, element.case_using, element.preparation, element.description, element.name ];
+        const updateQ = `UPDATE add_herb SET name=$1, image_url=$2, case_using=$3, preparation=$4, description=$5 WHERE name=$6;`;
+        // const insertQuery = 'INSERT INTO add_herb (name, image_url, case_using, preparation, description) Values($1, $2, $3, $4, $5);';
+  console.log(element.id)
+        client.query(updateQ, saveValus ).then(() => {
+          res.redirect(`/suggestion/delete/${element.id}`);
+        });
+  
+      });
+  
+  
+    });
+  }
+  
 function deleteFromSuggestionTable(req, res) {
   const herbId = req.params.id;
   const deleteQuery = `DELETE FROM add_suggestions WHERE id=$1;`;
